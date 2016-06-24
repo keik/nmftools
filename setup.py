@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='snmf',
+    name='nmftools',
     version='0.0.1-pre',
-    description='Semi-supervised NMF',
+    description='Implementation of NMF (Non-negative Matrix Factorization) and extension of NMF',
     license='MIT',
     author='keik',
     author_email='k4t0.kei@gmail.com',
-    url='https://github.com/junion-org/pip_github_test.git',
-    keywords='sample pip github python',
+    url='https://github.com/keik/nmftools.git',
+    keywords='nmf semi-supervised algebra matrix statistics',
     packages=find_packages(),
     install_requires=[],
 )

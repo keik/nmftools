@@ -69,7 +69,7 @@ def nmf(Y, R=3, n_iter=50, init_H=[], init_U=[], verbose=False):
     return [H, U, cost]
 
 
-def snmf(Y, R=3, n_iter=50, F=[], init_G=[], init_H=[], init_U=[], verbose=False):
+def ssnmf(Y, R=3, n_iter=50, F=[], init_G=[], init_H=[], init_U=[], verbose=False):
     """
     decompose non-negative matrix to components and activation with semi-supervised NMF
 
@@ -120,7 +120,7 @@ def snmf(Y, R=3, n_iter=50, F=[], init_G=[], init_H=[], init_U=[], verbose=False
         U = np.random.rand(R, N)
 
     if len(init_H):
-        H = init_H;
+        H = init_H
         R = init_H.shape[1]
     else:
         H = np.random.rand(M, R)
@@ -139,15 +139,12 @@ def snmf(Y, R=3, n_iter=50, F=[], init_G=[], init_H=[], init_U=[], verbose=False
 
         # update of H
         H *= (np.dot(Y, U.T) + eps) / (np.dot(np.dot(H, U) + np.dot(F, G), U.T) + eps)
-        # print(it, 'H', euclid_divergence(Y + eps, np.dot(H, U) + np.dot(F, G) + eps))
 
         # update of U
         U *= (np.dot(H.T, Y) + eps) / (np.dot(H.T, np.dot(H, U) + np.dot(F, G)) + eps)
-        # print(it, 'U', euclid_divergence(Y + eps, np.dot(H, U) + np.dot(F, G) + eps))
 
         # update of G
         G *= (np.dot(F.T, Y) + eps)[np.arange(G.shape[0])] / (np.dot(F.T, np.dot(H, U) + np.dot(F, G)) + eps)
-        # print(it, 'G', euclid_divergence(Y + eps, np.dot(H, U) + np.dot(F, G) + eps))
 
         # recomputation of Lambda (estimate of V)
         Lambda = np.dot(H, U) + np.dot(F, G)
@@ -156,5 +153,5 @@ def snmf(Y, R=3, n_iter=50, F=[], init_G=[], init_H=[], init_U=[], verbose=False
 
 
 def euclid_divergence(V, Vh):
-    d = 1 / 2 * (V ** 2 + Vh**2 - 2 * V * Vh).sum()
+    d = 1 / 2 * (V ** 2 + Vh ** 2 - 2 * V * Vh).sum()
     return d

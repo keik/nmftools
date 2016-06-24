@@ -1,3 +1,6 @@
-# snmf
+# nmftools
 
-Implementation of Semi-supervised NMF
+Implementation of NMF (Non-negative Matrix Factorization) and extension of NMF
+
+* NMF (Basic NMF)
+* SSNMF (Semi-Supervised NMF)
